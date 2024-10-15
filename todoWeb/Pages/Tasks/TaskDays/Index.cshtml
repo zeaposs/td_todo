@@ -10,7 +10,7 @@
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Name</th>
+                <th>Tasks</th>
                 <th></th>
             </tr>
         </thead>
@@ -31,7 +31,7 @@
                                             <td>
                                                 <a asp-page="../TaskItems/Edit" asp-route-id="@task.Id"><input type="button" class="btn btn-primary" value="edit" /></a>
                                                 <button type="submit" class="btn btn-primary" asp-page-handler="toggleTask" asp-route-id="@task.Id">toggle</button>
-                                                <button type="submit" class="btn btn-primary" asp-page-handler="deleteTask" asp-route-id="@task.Id">delete</button>
+                                                <button type="submit" class="btn btn-primary" asp-page-handler="deleteTask" asp-route-id="@task.Id">delete task</button>
                                             </td>
                                         </tr>
                                     }
@@ -40,7 +40,7 @@
                         </td>
                         <td>
                             <a asp-page="../TaskItems/Create" asp-route-id="@taskDay.TaskDate"><input type="button" class="btn btn-primary"  value="add task" /></a>
-                            <button type="submit" class="btn btn-primary" asp-page-handler="delete" asp-route-id="@taskDay.TaskDate">delete</button>
+                            <button type="submit" class="btn btn-primary" asp-page-handler="delete" asp-route-id="@taskDay.TaskDate">delete day</button>
                         </td>
                     </tr>
                 }
