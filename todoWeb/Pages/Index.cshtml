@@ -1,0 +1,17 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    @if (Model.CurrentTask == null)
+    {
+        <h2>NO UPCOMING TASKS!</h2>
+    }
+    else
+    {
+        <h2>UPCOMING TASK: @Model.CurrentTask.Description</h2>
+        <h2>DUE DATE: @Model.CurrentTask.TaskDayTaskDate</h2>
+    }
+</div>

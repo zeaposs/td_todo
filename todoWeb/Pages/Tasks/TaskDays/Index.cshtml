@@ -1,0 +1,52 @@
+﻿@page
+@model todoWeb.Pages.Tasks.TaskDays.IndexModel
+@{
+    ViewData["Title"] = "Task overview";
+}
+
+<h1>Tasks</h1>
+<form method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.TaskDays != null)
+            {
+                foreach (var taskDay in Model.TaskDays)
+                {
+                    <tr>
+                        <td>@taskDay.TaskDate</td>
+                        <td>
+                            <table class="table">
+                                <tbody>
+                                    @foreach(var task in taskDay.Tasks)
+                                    {
+                                        <tr>
+                                            <td style="@(@task.IsCompleted ? "text-decoration: line-through;" : string.Empty)"> @task.Description</td>
+                                            <td>
+                                                <a asp-page="../TaskItems/Edit" asp-route-id="@task.Id"><input type="button" class="btn btn-primary" value="edit" /></a>
+                                                <button type="submit" class="btn btn-primary" asp-page-handler="toggleTask" asp-route-id="@task.Id">toggle</button>
+                                                <button type="submit" class="btn btn-primary" asp-page-handler="deleteTask" asp-route-id="@task.Id">delete</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <a asp-page="../TaskItems/Create" asp-route-id="@taskDay.TaskDate"><input type="button" class="btn btn-primary"  value="add task" /></a>
+                            <button type="submit" class="btn btn-primary" asp-page-handler="delete" asp-route-id="@taskDay.TaskDate">delete</button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a asp-page="Create">Add new day</a>
+</form>
+
